@@ -13,7 +13,7 @@ type Props = {
 }
 withDefaults(defineProps<Props>(), {
   label: '',
-  variant: '',
+  variant: 'bg-green-400',
   icon: '',
 })
 </script>

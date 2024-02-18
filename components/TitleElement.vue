@@ -8,7 +8,7 @@
       <Icon v-else :name="icon" size="30" />
     </div>
 
-    <span v-if="label" class="whitespace-nowrap grow" v-html="label"></span>
+    <span v-if="label" :class="['whitespace-nowrap grow', textColor]" v-html="label"></span>
   </div>
 </template>
 
@@ -21,6 +21,7 @@ type Props = {
   image?: string
   tooltip?: TTooltip
   icon?: string
+  textColor?: string
 }
 withDefaults(defineProps<Props>(), {
   label: '',
@@ -30,5 +31,6 @@ withDefaults(defineProps<Props>(), {
     content: '',
   }),
   icon: '',
+  textColor: 'text-black',
 })
 </script>

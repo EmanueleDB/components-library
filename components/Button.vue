@@ -2,6 +2,7 @@
   <button
     :class="[
       'flex flex-nowrap items-center justify-center rounded',
+      variant,
       { disabled: disabled },
       [tooltip.content ? 'cursor-pointer' : 'cursor-default'],
     ]"
@@ -9,10 +10,11 @@
     :disabled="disabled"
   >
     <TitleElement
-      class="px-3 py-1"
+      :class="['px-3 py-1']"
       :label="label"
       :icon="icon"
       :tooltip="tooltip"
+      :text-color="textColor"
     />
   </button>
 </template>
@@ -27,6 +29,8 @@ type Props = {
   disabled?: boolean
   tooltip?: TTooltip
   icon?: string
+  textColor?: string
+  variant?: string
 }
 withDefaults(defineProps<Props>(), {
   label: '',
@@ -36,5 +40,7 @@ withDefaults(defineProps<Props>(), {
     content: '',
   }),
   icon: '',
+  textColor: 'text-black',
+  variant: '',
 })
 </script>

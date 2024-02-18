@@ -2,6 +2,7 @@
   <div
     :class="[
       'inline-flex flex-row items-center justify-center rounded align-middle text-sm font-medium',
+      variant,
       { 'cursor-pointer': tooltip.content },
     ]"
   >
@@ -25,6 +26,7 @@ type Props = {
   image?: string
   tooltip?: TTooltip
   icon?: string
+  variant?: string
 }
 withDefaults(defineProps<Props>(), {
   label: '',
@@ -34,6 +36,7 @@ withDefaults(defineProps<Props>(), {
     content: '',
   }),
   icon: '',
+  variant: 'bg-green-400',
 })
 
 // computed: {
