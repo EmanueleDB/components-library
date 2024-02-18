@@ -8,7 +8,11 @@
       <Icon v-else :name="icon" size="30" />
     </div>
 
-    <span v-if="label" :class="['whitespace-nowrap grow', textColor]" v-html="label"></span>
+    <span
+      v-if="label"
+      :class="['whitespace-nowrap grow', textColor]"
+      v-html="label"
+    ></span>
   </div>
 </template>
 
