@@ -2,59 +2,107 @@
   <div class="flex max-h-screen flex-col">
     <Navigation />
 
-    <div class="px-4">
-      <Alert label="Alert test" />
-      <Badge label="Badge test" />
-      <Avatar
-        image="https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?q=80&w=3412&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        :tooltip="{ content: 'test tooltip' }"
-      />
-      <Icon name="uil:github" size="30" />
+    <!--    <div class="px-4">-->
+    <!--      <Alert label="Alert test" />-->
+    <!--      <Badge label="Badge test" />-->
+    <!--      <Avatar-->
+    <!--        image="https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?q=80&w=3412&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"-->
+    <!--        :tooltip="{ content: 'test tooltip' }"-->
+    <!--      />-->
+    <!--      <Icon name="uil:github" size="30" />-->
 
-      <Tabs :active-index="2">
-        <Tab v-for="tab of items" :key="tab.label" :title="tab.label">
-          <template v-if="tab.key === 'data'"> 1 </template>
-          <template v-else-if="tab.key === 'upOrDown'"> 2 </template>
-          <template v-else> 3 </template>
-        </Tab>
-      </Tabs>
+    <!--      <Tabs :active-index="2">-->
+    <!--        <Tab v-for="tab of items" :key="tab.label" :title="tab.label">-->
+    <!--          <template v-if="tab.key === 'data'"> 1 </template>-->
+    <!--          <template v-else-if="tab.key === 'upOrDown'"> 2 </template>-->
+    <!--          <template v-else> 3 </template>-->
+    <!--        </Tab>-->
+    <!--      </Tabs>-->
 
-      <Button
-        label="Open modal"
-        text-color="text-white"
-        class="mb-3"
-        variant="bg-green-400"
-        @click="showModal = true"
-      />
-      <Modal v-if="showModal">Modal test</Modal>
+    <!--      <Button-->
+    <!--        label="Open modal"-->
+    <!--        text-color="text-white"-->
+    <!--        class="mb-3"-->
+    <!--        variant="bg-green-400"-->
+    <!--        @click="showModal = true"-->
+    <!--      />-->
+    <!--      <Modal v-if="showModal">Modal test</Modal>-->
 
-      <Button
-        label="Open Slide"
-        text-color="text-white"
-        class="mb-3"
-        variant="bg-green-400"
-        @click="showSlide = true"
-      />
-      <Slide v-if="showSlide">Slide test</Slide>
+    <!--      <Button-->
+    <!--        label="Open Slide"-->
+    <!--        text-color="text-white"-->
+    <!--        class="mb-3"-->
+    <!--        variant="bg-green-400"-->
+    <!--        @click="showSlide = true"-->
+    <!--      />-->
+    <!--      <Slide v-if="showSlide">Slide test</Slide>-->
 
-      <div class="flex items-center">
-        <label>
-          <span
-            class="rounded p-2 hover:cursor-pointer bg-gray-400 text-white h-auto"
-            >Select a file</span
-          >
-          <input
-            type="file"
-            class="hidden"
-            accept=".csv"
-            @change="handleFileUpload"
-          />
+    <!--      <div class="flex items-center">-->
+    <!--        <label>-->
+    <!--          <span-->
+    <!--            class="rounded p-2 hover:cursor-pointer bg-gray-400 text-white h-auto"-->
+    <!--            >Select a file</span-->
+    <!--          >-->
+    <!--          <input-->
+    <!--            type="file"-->
+    <!--            class="hidden"-->
+    <!--            accept=".csv"-->
+    <!--            @change="handleFileUpload"-->
+    <!--          />-->
+    <!--        </label>-->
+    <!--        <div v-if="showFile" class="ml-3 bg-blue-200 border-2 rounded p-1">-->
+    <!--          {{ showFile }}-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--      <DataTable class="mt-4" :data="tableData" />-->
+    <!--    </div>-->
+
+    <div class="container mx-auto px-4">
+      <h1 class="text-4xl font-bold mb-14">Schiphol NL Parking</h1>
+      <div class="border-2 border-black rounded pt-16 px-4 pb-4 mb-8 relative">
+        <label
+          class="block text-sm font-semibold mb-2 absolute top-0 left-4 transform -translate-y-1/2 bg-white px-2"
+        >
+          Find parking
         </label>
-        <div v-if="showFile" class="ml-3 bg-blue-200 border-2 rounded p-1">
-          {{ showFile }}
+        <div class="flex flex-col md:flex-row gap-4">
+          <div class="flex flex-col w-full">
+            <label for="arrivalDate" class="text-sm mb-1">From</label>
+            <input
+              id="arrivalDate"
+              v-model="arrivalDate"
+              type="datetime-local"
+              class="border-2 border-black rounded p-2 w-full h-12 box-shadow-custom"
+            />
+          </div>
+          <div class="flex flex-col w-full">
+            <label for="departureDate" class="text-sm mb-1">To</label>
+            <input
+              id="departureDate"
+              v-model="departureDate"
+              type="datetime-local"
+              class="border-2 border-black rounded p-2 w-full h-12 box-shadow-custom"
+            />
+          </div>
+          <div class="flex items-end w-full">
+            <button
+              class="no-underline rounded border-black h-12 uppercase text-[#000] cursor-pointer border-[3px] border-[solid] px-[0.5em] py-[0.25em] box-shadow-custom relative select-none active:[box-shadow:0px_0px_0px_0px] active:top-[5px] active:left-[5px] w-full"
+              @click="fetchData"
+            >
+              Search parkings
+            </button>
+          </div>
         </div>
       </div>
-      <DataTable class="mt-4" :data="tableData" />
+      <div
+        v-for="result in results"
+        :key="result.id"
+        class="border-2 border-black rounded p-2 mt-4"
+      >
+        <!-- Display your result here -->
+        <h2 class="text-xl font-bold">{{ result.name }}</h2>
+        <p class="text-lg">{{ result.price }} EUR</p>
+      </div>
     </div>
   </div>
 </template>
@@ -70,6 +118,29 @@ import Slide from '~/components/Slide.vue'
 import Tabs from '~/components/Tabs/Tabs.vue'
 import Tab from '~/components/Tabs/Tab.vue'
 import TitleElement from '~/components/TitleElement.vue'
+
+const arrivalDate = ref('')
+const departureDate = ref('')
+const results = ref([])
+
+const { refresh, data } = useFetch(
+  'https://jsonplaceholder.typicode.com/todos',
+  {
+    immediate: false,
+  },
+)
+const fetchData = async () => {
+  await refresh()
+  results.value = data.value
+}
+
+function extractDateTime(dateTimeString) {
+  const [datePart, timePart] = dateTimeString.split('T')
+  return { date: datePart, time: timePart }
+}
+
+const arrivalDateTime = computed(() => extractDateTime(arrivalDate.value))
+const departureDateTime = computed(() => extractDateTime(departureDate.value))
 
 const showModal = ref(false)
 const showSlide = ref(false)
