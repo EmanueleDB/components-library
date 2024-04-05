@@ -3,6 +3,12 @@
     <Navigation />
 
     <div class="px-4">
+      <Alert label="Alert test" />
+      <Badge label="Badge test" />
+      <Avatar
+        image="https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?q=80&w=3412&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        :tooltip="{ content: 'test tooltip' }"
+      />
       <Icon name="uil:github" size="30" />
 
       <Tabs :active-index="2">
@@ -12,6 +18,24 @@
           <template v-else> 3 </template>
         </Tab>
       </Tabs>
+
+      <Button
+        label="Open modal"
+        text-color="text-white"
+        class="mb-3"
+        variant="bg-green-400"
+        @click="showModal = true"
+      />
+      <Modal v-if="showModal">Modal test</Modal>
+
+      <Button
+        label="Open Slide"
+        text-color="text-white"
+        class="mb-3"
+        variant="bg-green-400"
+        @click="showSlide = true"
+      />
+      <Slide v-if="showSlide">Slide test</Slide>
 
       <div class="flex items-center">
         <label>
@@ -36,8 +60,19 @@
 </template>
 
 <script setup lang="ts">
+import Alert from '~/components/Alert.vue'
+import Avatar from '~/components/Avatar.vue'
+import Badge from '~/components/Badge.vue'
+import Button from '~/components/Button.vue'
+import DataTable from '~/components/DataTable.vue'
+import Modal from '~/components/Modal.vue'
+import Slide from '~/components/Slide.vue'
 import Tabs from '~/components/Tabs/Tabs.vue'
 import Tab from '~/components/Tabs/Tab.vue'
+import TitleElement from '~/components/TitleElement.vue'
+
+const showModal = ref(false)
+const showSlide = ref(false)
 
 const items = ref([
   {
