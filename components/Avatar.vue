@@ -1,6 +1,6 @@
 <template>
   <div
-    v-tooltip="tooltip"
+    v-tooltip="tooltip.content"
     :class="[
       'flex bg-white bg-center bg-no-repeat bg-cover items-center justify-center',
       squared ? 'rounded' : 'rounded-full',

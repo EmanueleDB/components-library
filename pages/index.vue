@@ -54,7 +54,7 @@
           {{ showFile }}
         </div>
       </div>
-      <DataTable class="mt-4" :data="tableData" />
+      <DataTable class="mt-4" :data="tableData" end/>
     </div>
   </div>
 </template>
