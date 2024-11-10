@@ -3,20 +3,23 @@ export default defineNuxtConfig({
     cssPath: ['~/assets/css/tailwind.css', { injectPosition: 'first' }],
     configPath: 'tailwind.config',
   },
+
   modules: [
     '@pinia/nuxt',
     'nuxt-security',
     '@nuxtjs/tailwindcss',
     'floating-vue/nuxt',
-    'nuxt-icon',
+    '@nuxt/icon',
     '@nuxtjs/color-mode',
     '@nuxt/content',
   ],
+
   colorMode: {
     classSuffix: '',
     preference: 'system',
     fallback: 'light',
   },
+
   security: {
     headers: {
       crossOriginEmbedderPolicy: 'unsafe-none',
@@ -30,11 +33,15 @@ export default defineNuxtConfig({
     xssValidator: false,
     rateLimiter: false,
   },
+
   runtimeConfig: {
     API_KEY: process.env.API_KEY,
     API_SECRET: process.env.API_SECRET,
   },
+
   typescript: {
     typeCheck: 'build',
   },
+
+  compatibilityDate: '2024-11-10',
 })
